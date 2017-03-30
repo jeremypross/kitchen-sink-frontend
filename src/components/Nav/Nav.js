@@ -19,6 +19,9 @@ class Nav extends Component {
           <li>
             <Link to="/login">Login</Link>
           </li>
+          <li>
+            <Link to="/api">Search</Link>
+          </li>
         </ul>
       </div>
     );
