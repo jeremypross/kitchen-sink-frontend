@@ -1,0 +1,90 @@
+import React, { Component } from "react";
+import { browserHistory } from "react-router";
+import update from "react-addons-update";
+
+class SignUp extends Component {
+  constructor(props) {
+    super(props);
+
+    // state is empty user object
+    this.state = {
+      user: {}
+    };
+  }
+
+  // GET request for user data
+  componentDidMount() {
+    fetch(`http://localhost:8000/users`, {
+      method: "GET"
+    })
+    .then((results) => {
+      results.json().then((data) => {
+        this.setState({ user:data });
+        console.log("signup.js componentDidMount data:", data);
+      });
+    })
+    .catch((err) => {
+      console.log("ERROR:", err);
+    });
+  }
+
+  handleChange(event) {
+    let newState = update(this.state, {
+      user: {
+        $merge: {
+          [event.target.name]: event.target.value
+        }
+      }
+    });
+
+    this.setState(newState);
+  }
+
+  // POST request to server for user signup
+  handleSubmit(event) {
+    event.preventDefault();
+
+    console.log(this.state.user);
+
+    fetch(`http://localhost:8000/users/signup`, {
+      method: "POST",
+      body: JSON.stringify(this.state),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(() => {
+      // after signup - send user to login page
+      browserHistory.push("/login");
+    })
+    .catch((err) => {
+      console.log("ERROR:", err);
+    });
+  }
+
+  render(){
+    return(
+      <div>
+        <div className="container">
+          <h2>Create an Account</h2>
+          <div className="form-container">
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <h4>First name:</h4>
+              <input name="first_name" type="text" className="signup-form" onChange={this.handleChange.bind(this)} />
+              <h4>Last name:</h4>
+              <input name="last_name" type="text" className="signup-form" onChange={this.handleChange.bind(this)} />
+              <h4>Email:</h4>
+              <input name="email" type="email" className="signup-form" onChange={this.handleChange.bind(this)} />
+              <h4>Password:</h4>
+              <input name="password_digest" type="password" className="signup-form" onChange={this.handleChange.bind(this)} />
+              <br />
+              <button className="standard-btn" type="submit">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default SignUp;
