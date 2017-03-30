@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { browserHistory } from "react-router";
 import update from "react-addons-update";
+import Nav from "../Nav/Nav";
+
 
 class Login extends Component {
   constructor(props) {
@@ -53,13 +55,15 @@ class Login extends Component {
     return (
      <div>
         <div className="container">
-          <h2>Login Here</h2>
+          <h1>Kitchen Sink</h1>
+          <Nav />
+          <h3>Login</h3>
           <div className="form-container">
             <form onSubmit={this.handleSubmit.bind(this)}>
-              <h4>Email:</h4>
-              <input name="email" type="email" onChange={this.handleChange.bind(this)} />
-              <h4>Password:</h4>
-              <input name="password" type="password" onChange={this.handleChange.bind(this)} /><br/>
+              <input name="email" type="email" placeholder="email" onChange={this.handleChange.bind(this)} />
+              <br/>
+              <input name="password" type="password" placeholder="password" onChange={this.handleChange.bind(this)} />
+              <br/>
               <button className="standard-btn" type="submit">Log In</button>
             </form>
           </div>

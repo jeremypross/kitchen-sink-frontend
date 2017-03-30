@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { browserHistory } from "react-router";
 import update from "react-addons-update";
 
+import Nav from "../Nav/Nav";
+
+
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -66,8 +69,10 @@ class SignUp extends Component {
     return(
       <div>
         <div className="container">
-          <h2>Create an Account</h2>
+          <h1>Kitchen Sink</h1>
+          <Nav />
           <div className="form-container">
+            <h3>Create an Account</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
               <h4>First name:</h4>
               <input name="first_name" type="text" className="signup-form" onChange={this.handleChange.bind(this)} />
