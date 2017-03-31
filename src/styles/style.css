@@ -1,0 +1,14 @@
+.result-item {
+  border: 1px solid gray;
+  margin: 10px 100px;
+  padding: 10px 20px;
+}
+
+#nav-bar {
+  list-style: none;
+  padding-left: 0;
+}
+
+#results-page {
+  text-align: center;
+}

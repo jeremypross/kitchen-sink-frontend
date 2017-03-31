@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import update from "react-addons-update";
 
 import Nav from "../Nav/Nav";
+import Modal from "../Modal/Modal";
 
 class RecipeResult extends Component {
   constructor(props) {
@@ -13,9 +14,23 @@ class RecipeResult extends Component {
       search: {
         query: ""
       },
-      recipe: {}
+      recipe: {},
+      modalVisible: false
     };
   }
+
+  showModal() {
+    this.setState({ modalVisible: true });
+    console.log("showModal() this", this);
+  };
+
+  hideModal() {
+    this.setState({ modalVisible: false });
+    console.log("hideModal() this", this);
+  }
+
+  // callback to set state of modal as visible - that down to modal as a prop
+  // pass it down like: showModal={this.showModal.bind(this)}
 
   handleChange(event) {
     let newState = update(this.state, {
@@ -44,7 +59,6 @@ class RecipeResult extends Component {
         this.setState({ recipes: data.matches });
         console.log("data from RecipeResult promise", data);
         console.log("this.state.recipes:", this.state.recipes);
-        // console.log("recipe id:", this.state.recipes[0].id)
       });
     })
     .catch((err) => {
@@ -65,29 +79,61 @@ class RecipeResult extends Component {
     })
     .then((results) => {
       results.json().then((data) => {
-        this.setState({ recipe: data })
-        console.log("data", this.state.recipe);
+        this.setState({ recipe: data });
+        console.log("this.state.recipe", this.state.recipe);
+        // this.setState({ modalVisible: true });
+        this.showModal()
       });
-    })
+    });
+  }
 
+  // POST to saved recipes on user's dashboard
+  handleSubmit(event) {
+    event.preventDefault();
+
+    fetch(`http://localhost:8000/recipes`, {
+      method: "POST",
+      body: JSON.stringify({
+        recipe: {
+          title: `${this.state.recipe.name}`,
+          image: `${this.state.recipe.image[0].hostedLargeUrl}`,
+          ingredients: `${this.state.recipe.ingredientLines}`,
+          time: `${this.state.recipe.totalTime}`,
+          serves: `${this.state.recipe.numberOfServings}`,
+          source: `${this.state.recipe.source.sourceRecipeUrl}`
+        }
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(() => {
+      // eventually push to dashboard
+      this.props.router.push('/');
+    })
+    .catch((err) => {
+      console.log("ERROR:", err);
+    });
   }
 
   render() {
     return(
-      <div>
+      <div id="results-page">
         <h1>Kitchen Sink</h1>
         <Nav />
 
         {/* search input for API query parameters */}
         <h3>Enter Ingredients:</h3>
-        <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Enter ingredients" /><br />
+        <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Enter ingredients" />
+        <br />
+        <br />
         <button onClick={this.findRecipes.bind(this)}>Search for Recipes</button>
         <h3>Recipes:</h3>
 
         {/* iterate over recipes array and render search results */}
         {this.state.recipes.map((recipe) => {
           return(
-            <div key={recipe.id}>
+            <div key={recipe.id} className="result-item">
               <h3>{recipe.recipeName}</h3>
               <img src={recipe.imageUrlsBySize[90]} />
               <p>Ingredients: {recipe.ingredients}</p>
@@ -96,9 +142,14 @@ class RecipeResult extends Component {
 
               {/* button to modal / GET recipe id fetch call here */}
               <button onClick={this.findRecipeInfo.bind(this, recipe)}>More Info</button>
+              <button onClick={this.hideModal.bind(this)}>Close Modal</button>
+
+
             </div>
           );
         })}
+
+        {this.state.modalVisible ? <Modal /> : null}
 
       </div>
     );
