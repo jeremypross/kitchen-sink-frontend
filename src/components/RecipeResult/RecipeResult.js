@@ -7,11 +7,13 @@ class RecipeResult extends Component {
   constructor(props) {
     super(props);
 
+    // store empty recipes array and empty query string in state
     this.state = {
       recipes: [],
       search: {
         query: ""
-      }
+      },
+      recipe: {}
     };
   }
 
@@ -24,7 +26,7 @@ class RecipeResult extends Component {
       }
     });
 
-    this.setState(newState)
+    this.setState(newState);
     console.log(this.state);
   }
 
@@ -42,6 +44,7 @@ class RecipeResult extends Component {
         this.setState({ recipes: data.matches });
         console.log("data from RecipeResult promise", data);
         console.log("this.state.recipes:", this.state.recipes);
+        // console.log("recipe id:", this.state.recipes[0].id)
       });
     })
     .catch((err) => {
@@ -49,18 +52,39 @@ class RecipeResult extends Component {
     });
   }
 
+  // SECOND API CALL - using recipe id as parameter
+  findRecipeInfo(recipe) {
+    console.log(recipe.id);
+
+    fetch(`http://localhost:8000/api/info/${recipe.id}`, {
+      method: "GET",
+      datatype: "json",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then((results) => {
+      results.json().then((data) => {
+        this.setState({ recipe: data })
+        console.log("data", this.state.recipe);
+      });
+    })
+
+  }
+
   render() {
     return(
       <div>
         <h1>Kitchen Sink</h1>
         <Nav />
+
+        {/* search input for API query parameters */}
         <h3>Enter Ingredients:</h3>
-        <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Enter ingredients"></input><br />
+        <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Enter ingredients" /><br />
         <button onClick={this.findRecipes.bind(this)}>Search for Recipes</button>
         <h3>Recipes:</h3>
 
-        {/* iterate over recipe results here */}
-
+        {/* iterate over recipes array and render search results */}
         {this.state.recipes.map((recipe) => {
           return(
             <div key={recipe.id}>
@@ -68,12 +92,13 @@ class RecipeResult extends Component {
               <img src={recipe.imageUrlsBySize[90]} />
               <p>Ingredients: {recipe.ingredients}</p>
               <p>Source: {recipe.sourceDisplayName}</p>
+              <p>ID: {recipe.id}</p>
+
+              {/* button to modal / GET recipe id fetch call here */}
+              <button onClick={this.findRecipeInfo.bind(this, recipe)}>More Info</button>
             </div>
-
-          )
-
+          );
         })}
-
 
       </div>
     );
