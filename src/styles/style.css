@@ -4,6 +4,18 @@
   padding: 10px 20px;
 }
 
+#dashboard, #homepage, #login-form, #signup-form {
+  text-align: center;
+}
+
+#modal {
+  background: rgba(0,0,0,.1);
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 50px;
+}
+
 #nav-bar {
   list-style: none;
   padding-left: 0;

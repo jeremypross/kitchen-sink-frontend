@@ -67,7 +67,7 @@ class SignUp extends Component {
 
   render(){
     return(
-      <div>
+      <div id="signup-form">
         <div className="container">
           <h1>Kitchen Sink</h1>
           <Nav />
@@ -82,6 +82,7 @@ class SignUp extends Component {
               <input name="email" type="email" className="signup-form" onChange={this.handleChange.bind(this)} />
               <h4>Password:</h4>
               <input name="password_digest" type="password" className="signup-form" onChange={this.handleChange.bind(this)} />
+              <br />
               <br />
               <button className="standard-btn" type="submit">Sign Up</button>
             </form>

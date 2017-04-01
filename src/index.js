@@ -11,6 +11,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
 import RecipeResult from "./components/RecipeResult/RecipeResult";
 import Modal from "./components/Modal/Modal";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 ReactDom.render(
   <Router history={browserHistory}>
@@ -19,6 +20,7 @@ ReactDom.render(
     <Route path="/login" component={Login} />
     <Route path="/api" component={RecipeResult} />
     <Route path="/modal" component={Modal} />
+    <Route path="/dashboard" component={Dashboard} />
   </Router>
   , document.getElementById("app")
 );

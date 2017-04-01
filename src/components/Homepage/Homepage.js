@@ -9,10 +9,10 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div>
+      <div id="homepage">
         <h1>Kitchen Sink</h1>
         <Nav />
-        <p>Homepage content</p>
+        <p>Need recipe inspiration?</p>
       </div>
     );
   }

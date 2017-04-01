@@ -40,10 +40,11 @@ class Login extends Component {
     })
     .then((results) => {
       results.json().then((jwt) => {
-        console.log('jwt in login component', jwt.token);
+        console.log("jwt in login component", jwt.token);
         window.localStorage.setItem("MyToken", jwt.token);
-        // push to dashboard here once recipe model/controller are built out
-        browserHistory.push("/");
+        // window.localStorage.setItem("user_id", )
+        // push to user's dashboard
+        browserHistory.push("/dashboard");
       });
     })
     .catch(() => {
@@ -53,7 +54,7 @@ class Login extends Component {
 
   render() {
     return (
-     <div>
+     <div id="login-form">
         <div className="container">
           <h1>Kitchen Sink</h1>
           <Nav />
