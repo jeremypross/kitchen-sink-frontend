@@ -23,10 +23,11 @@ class Dashboard extends Component {
     })
     .then((results) => {
       results.json().then((data) => {
-        console.log("DATA:", data.data);
+        console.log("DATA:", data);
+        console.log("USER ID:", data.user_id)
         this.setState({ recipes: data.data });
         this.setState({ user_id: data.user_id });
-        window.localStorage.setItem('user_id', parseInt(this.state.user_id));
+        window.localStorage.setItem('user_id', this.state.user_id);
     });
   })
   .catch((err) => {
@@ -51,6 +52,8 @@ class Dashboard extends Component {
                 source={recipe.source}
                 source_url={recipe.source_url}
                 cook_time={recipe.cook_time}
+                id={recipe.id}
+                user_id={recipe.user_id}
               />
             </div>
           )

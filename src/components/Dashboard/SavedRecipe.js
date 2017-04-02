@@ -13,7 +13,7 @@ class SavedRecipe extends Component {
   }
 
   handleDelete() {
-    fetch(`http://localhost:8000/recipes/${this.props.recipe_id}/${this.props.user_id}`, {
+    fetch(`http://localhost:8000/recipes/${this.props.id}/${this.props.user_id}`, {
       method: "DELETE"
     })
     .then(() => {
@@ -26,17 +26,17 @@ class SavedRecipe extends Component {
 
   render() {
     return(
-      <div>
+      <div className="dashboard-recipe" style={this.state.isVisible}>
         <div>
           <h3>{this.props.title}</h3>
         </div>
         <img src={this.props.image} />
         <p>Cooking Time: {this.props.cook_time}</p>
         <p>Ingredients: {this.props.ingredients}</p>
-        <p><a href={this.props.source_url}>Recipe Source</a></p>
+        <p>Source: <a href={this.props.source_url}>{this.props.source}</a></p>
         <p></p>
         <Link to="/dashboard">
-          <button onClick={this.handleDelete.bind(this)}>Remove from Favorites</button>
+          <button onClick={this.handleDelete.bind(this)}>Remove Recipe</button>
         </Link>
       </div>
     );

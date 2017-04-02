@@ -99,6 +99,7 @@ class RecipeResult extends Component {
           ingredients: `${this.state.recipe.ingredientLines}`,
           image_url: `${this.state.recipe.images[0].hostedLargeUrl}`,
           cook_time: `${this.state.recipe.totalTime}`,
+          source: `${this.state.recipe.source.sourceDisplayName}`,
           source_url: `${this.state.recipe.source.sourceRecipeUrl}`,
           user_id: window.localStorage.getItem('user_id')
         }
@@ -138,7 +139,6 @@ class RecipeResult extends Component {
               <img src={recipe.imageUrlsBySize[90]} />
               <p>Ingredients: {recipe.ingredients.join(', ')}</p>
               <p>Source: {recipe.sourceDisplayName}</p>
-              {/* <p>ID: {recipe.id}</p> */}
 
               {/* button to modal / GET recipe id fetch call here */}
               <button onClick={this.findRecipeInfo.bind(this, recipe)}>More Info</button>
