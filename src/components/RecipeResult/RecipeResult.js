@@ -100,8 +100,8 @@ class RecipeResult extends Component {
           ingredients: `${this.state.recipe.ingredientLines}`,
           image_url: `${this.state.recipe.images[0].hostedLargeUrl}`,
           cook_time: `${this.state.recipe.totalTime}`,
-          source_url: `${this.state.recipe.source.sourceRecipeUrl}`
-          // user_id: window.localStorage.getItem('user_id')
+          source_url: `${this.state.recipe.source.sourceRecipeUrl}`,
+          user_id: window.localStorage.getItem('user_id')
         }
       }),
       headers: {
@@ -109,8 +109,8 @@ class RecipeResult extends Component {
       }
     })
     .then(() => {
-      // eventually push to dashboard
-      // this.props.router.push('/');
+      // push to dashboard
+      this.props.router.push('/dashboard');
     })
     .catch((err) => {
       console.log("ERROR:", err);

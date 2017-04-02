@@ -15,7 +15,8 @@ class Dashboard extends Component {
   render() {
     return(
       <div id="dashboard">
-        <h1>Dashboard</h1>
+        <h1>Kitchen Sink</h1>
+        <h3>Dashboard</h3>
         <Nav />
       </div>
     )

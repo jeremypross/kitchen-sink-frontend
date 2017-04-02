@@ -12,14 +12,14 @@ class Modal extends Component {
 
   }
 
-  showModal() {
-    this.setState({ modalVisible: true })
-  }
-
-  hideModal() {
-    this.setState({ modalVisible: false })
-    console.log(this.state);
-  }
+  // showModal() {
+  //   this.setState({ modalVisible: true })
+  // }
+  //
+  // hideModal() {
+  //   this.setState({ modalVisible: false })
+  //   console.log(this.state);
+  // }
 
   render() {
     return(

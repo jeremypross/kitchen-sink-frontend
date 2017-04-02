@@ -41,10 +41,11 @@ class Login extends Component {
     .then((results) => {
       results.json().then((jwt) => {
         console.log("jwt in login component", jwt.token);
-        window.localStorage.setItem("MyToken", jwt.token);
-        // window.localStorage.setItem("user_id", )
+        // store token in local browser cache
+        window.localStorage.setItem("MyToken", jwt.token.token);
+        window.localStorage.setItem("user_id", jwt.token.user_id);
         // push to user's dashboard
-        browserHistory.push("/dashboard");
+        this.props.router.push("/dashboard");
       });
     })
     .catch(() => {
