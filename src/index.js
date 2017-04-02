@@ -12,6 +12,8 @@ import Login from "./components/Login/Login";
 import RecipeResult from "./components/RecipeResult/RecipeResult";
 import Modal from "./components/Modal/Modal";
 import Dashboard from "./components/Dashboard/Dashboard";
+import SavedRecipe from "./components/Dashboard/SavedRecipe";
+
 
 ReactDom.render(
   <Router history={browserHistory}>

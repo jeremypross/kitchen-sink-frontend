@@ -8,7 +8,6 @@ class RecipeResult extends Component {
   constructor(props) {
     super(props);
 
-    // store empty recipes array and empty query string in state
     this.state = {
       recipes: [],
       search: {
@@ -160,6 +159,7 @@ class RecipeResult extends Component {
             source_url={this.state.recipe.source.sourceRecipeUrl}
             time={this.state.recipe.totalTime}
           /> : null}
+
           {this.state.modalVisible?
             <button onClick={this.hideModal.bind(this)}>Close Modal</button>
             : null

@@ -41,7 +41,7 @@ class Login extends Component {
     .then((results) => {
       results.json().then((jwt) => {
         console.log("jwt in login component", jwt.token);
-        // store token in local browser cache
+        // store token and user ID in browser cache
         window.localStorage.setItem("MyToken", jwt.token.token);
         window.localStorage.setItem("user_id", jwt.token.user_id);
         // push to user's dashboard
