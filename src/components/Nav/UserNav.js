@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { browserHistory } from "react-router";
 import { Link } from "react-router";
 
 class UserNav extends Component {
@@ -9,6 +10,8 @@ class UserNav extends Component {
   handleSubmit() {
     window.localStorage.removeItem("MyToken");
     window.localStorage.removeItem("user_id");
+    window.localStorage.removeItem("loggedin")
+    browserHistory.push('/login');
   }
 
   render() {
@@ -19,7 +22,7 @@ class UserNav extends Component {
             <Link to="/api">Search</Link>
           </li>
           <li>
-            <Link to="/login" onClick={this.handleSubmit.bind(this)}>Logout</Link>
+            <Link to="/" onClick={this.handleSubmit.bind(this)}>Logout</Link>
           </li>
         </ul>
       </div>

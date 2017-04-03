@@ -32,17 +32,18 @@ class Homepage extends Component {
       <div id="homepage">
         <h1>KITCHEN SINK</h1>
         <Nav />
-        <h5>Recently Recipes Saved By Users:</h5>
-        {this.state.recipes.map((recipe) => {
-          return(
-            <div key={recipe.id}>
-              <h3>{recipe.title}</h3>
-              <img src={recipe.image_url}/>
-              <p>Recipe: <a href={recipe.source_url}>{recipe.source}</a></p>
-            </div>
-          )
-
-        })}
+        <h5>Recently Saved Recipes:</h5>
+        <div className="result-container">
+          {this.state.recipes.map((recipe) => {
+            return(
+              <div key={recipe.id} className="homepage-item">
+                <h3>{recipe.title}</h3>
+                <img src={recipe.image_url}/>
+                <p>Recipe: <a href={recipe.source_url}>{recipe.source}</a></p>
+              </div>
+            )
+          })}
+        </div>
 
       </div>
     );

@@ -1,13 +1,13 @@
+/* SEMANTIC ELEMENTS */
+
 * {
   background-color: #ECECEA;
 }
 
-/* LOGIN PAGE */
-
 button {
   border-radius: 20px;
   background-color: rgba(211, 211, 211, .5);
-  height: 50px;
+  height: 35px;
   outline: none;
 }
 
@@ -23,41 +23,63 @@ button {
 
 /* RECIPE RESULT */
 
-#results-page {
-}
-
 .result-container {
   display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .result-item {
-  /*background-color: rgba(200,200,200,.5);*/
-  border: 2px solid gray;
-  flex: 3;
-  margin: 20px 200px;
-  padding: 10px 20px;
+  border: 1px solid gray;
+  box-shadow: 2px 1px 1px gray;
+  margin: 25px 20px;
+  padding: 10px 10px;
+  width: 275px;
 }
 
-#search-bar {
+.homepage-item {
+  border: 1px solid gray;
+  box-shadow: 3px 2px 2px gray;
+  margin: 25px 20px;
+  padding: 10px 10px;
+  width: 400px;
 }
 
-#dashboard, #homepage, #login-form, #signup-form {
+#dashboard, #homepage, #login-form, #results-page, #signup-form {
   text-align: center;
 }
 
-.dashboard-recipe {
+/* DASHBOARD PAGE */
+
+.dashboard-container {
+  align-items: center;
   border: 1px solid gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   margin: 20px 100px;
-  padding: 20px;
 }
 
-#modal {
-  background: rgba(0,0,0,.1);
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 20px 150px;
+.dashboard-item {
+  flex: 6;
+  padding: 15px;
 }
+
+.saved-item-title{
+  margin-top: 0;
+}
+
+/* MODAL */
+
+#modal {
+  border: 5px solid #5281ab;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px 200px;
+}
+
+/* NAV */
 
 #nav-bar {
   list-style: none;
@@ -78,6 +100,15 @@ a:hover{
   text-decoration: underline;
 }
 
-#results-page {
-  text-align: center;
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 90%;
+  }
+
+  .dashboard-item {
+    padding: 0;
+  }
 }

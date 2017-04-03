@@ -5,28 +5,15 @@ class Modal extends Component {
     super(props);
     console.log("PROPS*****", props)
 
-
     this.state = {
       modalVisible: false
     }
 
   }
 
-  // showModal() {
-  //   this.setState({ modalVisible: true })
-  // }
-  //
-  // hideModal() {
-  //   this.setState({ modalVisible: false })
-  //   console.log(this.state);
-  // }
-
   render() {
     return(
           <div id="modal">
-            <div>
-              <h4 className="modal-title">Recipe Info:</h4>
-            </div>
             <div className="modal-body">
               <h3>{this.props.name}</h3>
               <img src={this.props.image} />

@@ -12,10 +12,19 @@ class Dashboard extends Component {
     this.state = {
       recipes: [],
       user_id: 0,
-      comment: ""
+      comment: "",
+      recipe: {}
     };
   }
 
+  // checks for Token in localStorage - if no token push user to dashboard
+  componentWillMount() {
+    if (!localStorage.getItem('MyToken')) {
+      browserHistory.push('/login');
+    }
+  }
+
+  // GET request to authorize token for dashboard access and find all users's saved recipes
   componentDidMount() {
     fetch('http://localhost:8000/users/dashboard', {
       method: "GET",
@@ -26,7 +35,7 @@ class Dashboard extends Component {
     .then((results) => {
       results.json().then((data) => {
         console.log("DATA:", data);
-        console.log("USER ID:", data.user_id)
+        console.log("USER ID:", data.user_id);
         this.setState({ recipes: data.data });
         this.setState({ user_id: data.user_id });
         window.localStorage.setItem('user_id', this.state.user_id);
@@ -39,48 +48,13 @@ class Dashboard extends Component {
     })
   }
 
-  handleChange(event) {
-    let newState = update(this.state, {
-      comment: {
-        $merge: {
-          [event.target.name]: event.target.value
-        }
-      }
-    });
-
-    this.setState(newState);
-  }
-
-  // addComment(event) {
-  //   event.preventDefault();
-  //
-  //   const user_id = window.localStorage.getItem('user_id');
-  //
-  //   fetch(`http://localhost:8000/recipes/6/${user_id}`, {
-  //     method: "PUT",
-  //     body: JSON.stringify({ comment: this.state.comment}),
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   })
-  //   .then(() => {
-  //       console.log("COMMENT ADDED");
-  //       // this.setState({ comment: data });
-  //       browserHistory.push("/dashboard")
-  //   })
-  //   .catch((err) => {
-  //     console.log("ERROR", err);
-  //   })
-  // }
-
-  // need to work on these route parameters
-  // having parsing errors in promise
-
   render() {
     return(
       <div id="dashboard">
         <h1>Kitchen Sink</h1>
         <h3>Dashboard</h3>
+
+        {/* {this.state.recipes[0].first_name} {this.state.recipes[0].last_name} */}
 
         <UserNav />
         {this.state.recipes.map((recipe) => {
@@ -94,16 +68,10 @@ class Dashboard extends Component {
                 source_url={recipe.source_url}
                 cook_time={recipe.cook_time}
                 id={recipe.id}
+                comment={recipe.comment}
                 user_id={recipe.user_id}
               />
 
-              {/* <form onSubmit={this.addComment.bind(this)}>
-                <h4>Submit Comment:</h4>
-                <input name="comment" type="text" placeholder="Comment..." />
-                <br />
-                <br />
-                <button type="submit">Submit</button>
-              </form> */}
             </div>
           )
         })}
