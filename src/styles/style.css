@@ -1,7 +1,44 @@
+* {
+  background-color: #ECECEA;
+}
+
+/* LOGIN PAGE */
+
+button {
+  border-radius: 20px;
+  background-color: rgba(211, 211, 211, .5);
+  height: 50px;
+  outline: none;
+}
+
+.form-input {
+  background: transparent;
+  background-color: white;
+  text-align: center;
+  margin: 5px 0;
+  outline: none;
+  padding: 10px;
+  width: 30%;
+}
+
+/* RECIPE RESULT */
+
+#results-page {
+}
+
+.result-container {
+  display: flex;
+}
+
 .result-item {
-  border: 1px solid gray;
-  margin: 10px 100px;
+  /*background-color: rgba(200,200,200,.5);*/
+  border: 2px solid gray;
+  flex: 3;
+  margin: 20px 200px;
   padding: 10px 20px;
+}
+
+#search-bar {
 }
 
 #dashboard, #homepage, #login-form, #signup-form {
@@ -19,12 +56,26 @@
   border: 1px solid gray;
   border-radius: 5px;
   padding: 20px;
-  margin: 50px;
+  margin: 20px 150px;
 }
 
 #nav-bar {
   list-style: none;
   padding-left: 0;
+}
+
+li, #nav-bar {
+  display: inline;
+  padding: 0 5px;
+}
+
+a, li, #nav-bar {
+  color: gray;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
 }
 
 #results-page {

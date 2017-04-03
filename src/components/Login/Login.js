@@ -44,6 +44,7 @@ class Login extends Component {
         // store token and user ID in browser cache
         window.localStorage.setItem("MyToken", jwt.token.token);
         window.localStorage.setItem("user_id", jwt.token.user_id);
+        window.localStorage.setItem("loggedin", jwt.token.loggedIn)
         // push to user's dashboard
         this.props.router.push("/dashboard");
       });
@@ -55,19 +56,22 @@ class Login extends Component {
 
   render() {
     return (
-     <div id="login-form">
-        <div className="container">
-          <h1>Kitchen Sink</h1>
-          <Nav />
-          <h3>Login</h3>
-          <div className="form-container">
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <input name="email" type="email" placeholder="email" onChange={this.handleChange.bind(this)} />
-              <br/>
-              <input name="password" type="password" placeholder="password" onChange={this.handleChange.bind(this)} />
-              <br/>
-              <button className="standard-btn" type="submit">Log In</button>
-            </form>
+      <div>
+        <div id="login-form">
+          <div className="container">
+            <h1>KITCHEN SINK</h1>
+            <Nav />
+            <h3>Login</h3>
+            <div className="form-container">
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                <input className="form-input" name="email" type="email" placeholder="email" onChange={this.handleChange.bind(this)} />
+                <br/>
+                <input className="form-input" name="password" type="password" placeholder="password" onChange={this.handleChange.bind(this)} />
+                <br/>
+                <br/>
+                <button className="login-button" type="submit">Log In</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

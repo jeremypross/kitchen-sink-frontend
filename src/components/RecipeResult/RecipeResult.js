@@ -120,30 +120,34 @@ class RecipeResult extends Component {
   render() {
     return(
       <div id="results-page">
-        <h1>Kitchen Sink</h1>
+        <h1>KITCHEN SINK</h1>
         <Nav />
 
         {/* search input for API query parameters */}
-        <h3>Enter Ingredients:</h3>
-        <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Enter ingredients" />
-        <br />
-        <br />
-        <button onClick={this.findRecipes.bind(this)}>Search for Recipes</button>
-        <h3>Recipes:</h3>
+        <div id="search-bar">
+          <h3>Recipe Inspiration!</h3>
+          <input name="query" className="form-input" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Enter ingredients" />
+          <br />
+          <br />
+          <button onClick={this.findRecipes.bind(this)}>Search for Recipes!</button>
+        </div>
 
         {/* iterate over recipes array and render search results */}
         {this.state.recipes.map((recipe) => {
           return(
-            <div key={recipe.id} className="result-item">
-              <h3>{recipe.recipeName}</h3>
-              <img src={recipe.imageUrlsBySize[90]} />
-              <p>Ingredients: {recipe.ingredients.join(', ')}</p>
-              <p>Source: {recipe.sourceDisplayName}</p>
+            <div key={recipe.id}>
+              <div className="result-container">
+                <div className="result-item">
+                  <h3>{recipe.recipeName}</h3>
+                  <img src={recipe.imageUrlsBySize[90]} />
+                  <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+                  <p>Source: {recipe.sourceDisplayName}</p>
 
-              {/* button to modal / GET recipe id fetch call here */}
-              <button onClick={this.findRecipeInfo.bind(this, recipe)}>More Info</button>
-              {/* <button onClick={this.hideModal.bind(this)}>Close Modal</button> */}
-
+                  {/* button to modal / GET recipe id fetch call here */}
+                  <button onClick={this.findRecipeInfo.bind(this, recipe)}>More Info</button>
+                  {/* <button onClick={this.hideModal.bind(this)}>Close Modal</button> */}
+                </div>
+              </div>
             </div>
           );
         })}
@@ -158,13 +162,16 @@ class RecipeResult extends Component {
             source={this.state.recipe.source.sourceDisplayName}
             source_url={this.state.recipe.source.sourceRecipeUrl}
             time={this.state.recipe.totalTime}
+
+
           /> : null}
 
           {this.state.modalVisible?
-            <button onClick={this.hideModal.bind(this)}>Close Modal</button>
+            <button onClick={this.hideModal.bind(this)}>Close</button>
             : null
           }
-
+          <br/>
+          <br/>
           {this.state.modalVisible?
             <button onClick={this.handleSubmit.bind(this)}>Save Recipe</button>
             : null
