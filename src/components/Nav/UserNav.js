@@ -11,18 +11,19 @@ class UserNav extends Component {
     window.localStorage.removeItem("MyToken");
     window.localStorage.removeItem("user_id");
     window.localStorage.removeItem("loggedin")
-    browserHistory.push('/login');
+    browserHistory.push('/');
   }
 
   render() {
     return (
-      <div>
+      <div id="nav">
         <ul id="nav-bar">
+          <h1>KITCHEN SINK</h1>
           <li>
-            <Link to="/api">Search</Link>
+            <Link className="nav-link" to="/api">SEARCH</Link>
           </li>
           <li>
-            <Link to="/" onClick={this.handleSubmit.bind(this)}>Logout</Link>
+            <Link className="nav-link" to="/" onClick={this.handleSubmit.bind(this)}>LOG OUT</Link>
           </li>
         </ul>
       </div>

@@ -19,7 +19,7 @@ class Homepage extends Component {
     .then((results) => {
       results.json().then((data) => {
         this.setState({ recipes: data });
-        console.log("signup.js componentDidMount data:", data);
+        console.log("homepage componentDidMount data:", data);
       });
     })
     .catch((err) => {
@@ -30,16 +30,15 @@ class Homepage extends Component {
   render() {
     return (
       <div id="homepage">
-        <h1>KITCHEN SINK</h1>
         <Nav />
-        <h5>Recently Saved Recipes:</h5>
+        <h3>RECENTLY SAVED RECIPES:</h3>
         <div className="result-container">
           {this.state.recipes.map((recipe) => {
             return(
               <div key={recipe.id} className="homepage-item">
-                <h3>{recipe.title}</h3>
+                <h3 className="homepage-content">{recipe.title}</h3>
                 <img src={recipe.image_url}/>
-                <p>Recipe: <a href={recipe.source_url}>{recipe.source}</a></p>
+                <p className="homepage-content">Recipe: <a href={recipe.source_url}>{recipe.source}</a></p>
               </div>
             )
           })}

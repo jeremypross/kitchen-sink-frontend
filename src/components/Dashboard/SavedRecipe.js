@@ -26,7 +26,7 @@ class SavedRecipe extends Component {
     this.setState(newState);
   }
 
-  // PUT request for adding comments to saved recipes
+  // PUT request for adding comments to saved recipes -
   addComment(event) {
     event.preventDefault();
 
@@ -40,11 +40,10 @@ class SavedRecipe extends Component {
     })
     .then(() => {
         console.log("COMMENT ADDED");
-        console.log("Comment:", this.state.comment)
+        console.log("Comment:", this.state.comment);
         this.setState({ comment: this.state.comment });
-        this.setState({ comment: "" })
-
-        browserHistory.push("/dashboard")
+        browserHistory.push("/dashboard");
+        window.location.reload();
     })
     .catch((err) => {
       console.log("ERROR", err);
@@ -75,21 +74,23 @@ class SavedRecipe extends Component {
             </div>
           </div>
           <div className="dashboard-item">
-            <p>Cooking Time: {this.props.cook_time}</p>
-            <p>Ingredients: {this.props.ingredients}</p>
-            <p>Source: <a href={this.props.source_url}>{this.props.source}</a></p>
+            <p className="saved-content">Cooking Time: {this.props.cook_time}</p>
+            <p className="saved-content">Ingredients: {this.props.ingredients}</p>
+            <p className="saved-content">Source: <a href={this.props.source_url} target="_blank">{this.props.source}</a></p>
             <Link to="/dashboard">
               <button onClick={this.handleDelete.bind(this)}>Remove Recipe</button>
             </Link>
           </div>
         </div>
         <h4>Comment:</h4>
-        <p>{this.props.comment}</p>
+          <p>{this.props.comment}</p>
           <br />
         <input name="comment" type="text" placeholder="Enter Comment..." onChange={this.handleChange.bind(this)} />
           <br />
           <br />
         <button onClick={this.addComment.bind(this)}>Submit Comment</button>
+          <br />
+          <br />
       </div>
     );
   }

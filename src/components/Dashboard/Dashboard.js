@@ -51,12 +51,10 @@ class Dashboard extends Component {
   render() {
     return(
       <div id="dashboard">
-        <h1>Kitchen Sink</h1>
-        <h3>Dashboard</h3>
-
         {/* {this.state.recipes[0].first_name} {this.state.recipes[0].last_name} */}
 
         <UserNav />
+        <h3>DASHBOARD</h3>
         {this.state.recipes.map((recipe) => {
           return(
             <div key={recipe.id}>

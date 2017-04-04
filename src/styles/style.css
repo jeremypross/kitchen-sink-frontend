@@ -1,19 +1,26 @@
 /* SEMANTIC ELEMENTS */
 
 * {
-  background-color: #ECECEA;
+  background-color: #798086;
+  font-family: 'Oswald', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 button {
-  border-radius: 20px;
-  background-color: rgba(211, 211, 211, .5);
+  border-radius: 8px;
+  background-color: rgba(211,211,211,.5);
   height: 35px;
   outline: none;
 }
 
-.form-input {
+h1 {
+  background-color: rgb(56,56,56);
+  color: #F8F8FF;
+}
+
+input {
   background: transparent;
-  background-color: white;
+  background-color: #F8F8FF;
   text-align: center;
   margin: 5px 0;
   outline: none;
@@ -30,8 +37,14 @@ button {
   flex-wrap: wrap;
 }
 
+.result-content {
+  background-color: #F8F8FF;
+}
+
 .result-item {
+  background-color: #F8F8FF;
   border: 1px solid gray;
+  border-radius: 3px;
   box-shadow: 2px 1px 1px gray;
   margin: 25px 20px;
   padding: 10px 10px;
@@ -39,11 +52,17 @@ button {
 }
 
 .homepage-item {
+  background-color: #F8F8FF;
   border: 1px solid gray;
   box-shadow: 3px 2px 2px gray;
+  border-radius: 4px;
   margin: 25px 20px;
   padding: 10px 10px;
   width: 400px;
+}
+
+.homepage-content {
+  background-color: #F8F8FF;
 }
 
 #dashboard, #homepage, #login-form, #results-page, #signup-form {
@@ -54,6 +73,7 @@ button {
 
 .dashboard-container {
   align-items: center;
+  background-color: rgb(253,253,253);
   border: 1px solid gray;
   display: flex;
   flex-direction: row;
@@ -62,38 +82,78 @@ button {
 }
 
 .dashboard-item {
+  background-color: rgb(253,253,253);
   flex: 6;
   padding: 15px;
 }
 
+.dashboard-image {
+  background-color: rgb(253,253,253);
+}
+
+.saved-content {
+  background-color: rgb(253,253,253);
+}
+
 .saved-item-title{
+  background-color: rgb(253,253,253);
   margin-top: 0;
+}
+
+.comment {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  width: 20%;
 }
 
 /* MODAL */
 
 #modal {
+  background-color: #F8F8FF;
   border: 5px solid #5281ab;
   border-radius: 5px;
   padding: 5px;
   margin: 10px 200px;
 }
 
+.modal-body {
+  background-color: #F8F8FF;
+}
+
+.modal-content {
+  background-color: #F8F8FF;
+}
+
 /* NAV */
 
+#nav {
+  background-color: rgb(56,56,56);
+  color: #F8F8FF;
+  padding-bottom: 20px;
+}
+
 #nav-bar {
+  background-color: rgb(56,56,56);
   list-style: none;
   padding-left: 0;
 }
 
-li, #nav-bar {
+.nav-link, #nav-bar {
+  background-color: rgb(56,56,56);
   display: inline;
   padding: 0 5px;
 }
 
 a, li, #nav-bar {
-  color: gray;
+  display: inline;
   text-decoration: none;
+}
+
+.nav-link {
+  background-color: rgb(56,56,56);
+  color: #F8F8FF;
 }
 
 a:hover{

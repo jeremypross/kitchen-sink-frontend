@@ -19,6 +19,7 @@ class RecipeResult extends Component {
 
   }
 
+  // call backs to toggle modal visiblity
   showModal() {
     this.setState({ modalVisible: true });
     console.log("showModal() this", this);
@@ -29,9 +30,9 @@ class RecipeResult extends Component {
     console.log("hideModal() this", this);
   }
 
-  // when modal is fired - automatically scrolls to view
+  // when modal is fired - automatically scrolls towards top of page to view
   componentDidUpdate() {
-    window.scrollTo(0, 260);
+    window.scrollTo(0, 300);
   }
 
   // callback to set state of modal as visible - that passes down to modal as a prop
@@ -98,43 +99,48 @@ class RecipeResult extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    fetch(`http://localhost:8000/recipes`, {
-      method: "POST",
-      body: JSON.stringify({
-        recipe: {
-          title: `${this.state.recipe.name}`,
-          ingredients: `${this.state.recipe.ingredientLines}`,
-          image_url: `${this.state.recipe.images[0].hostedLargeUrl}`,
-          cook_time: `${this.state.recipe.totalTime}`,
-          source: `${this.state.recipe.source.sourceDisplayName}`,
-          source_url: `${this.state.recipe.source.sourceRecipeUrl}`,
-          comment: `${this.state.recipe.comment}`,
-          user_id: window.localStorage.getItem('user_id')
+    // check if user is logged in they can save recipes
+    // if not user is pushed to login page
+    if(window.localStorage.getItem('loggedin')) {
+      fetch(`http://localhost:8000/recipes`, {
+        method: "POST",
+        body: JSON.stringify({
+          recipe: {
+            title: `${this.state.recipe.name}`,
+            ingredients: `${this.state.recipe.ingredientLines}`,
+            image_url: `${this.state.recipe.images[0].hostedLargeUrl}`,
+            cook_time: `${this.state.recipe.totalTime}`,
+            source: `${this.state.recipe.source.sourceDisplayName}`,
+            source_url: `${this.state.recipe.source.sourceRecipeUrl}`,
+            comment: `${this.state.recipe.comment}`,
+            user_id: window.localStorage.getItem('user_id')
+          }
+        }),
+        headers: {
+          "Content-Type": "application/json"
         }
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(() => {
-      // push to dashboard
-      this.props.router.push('/dashboard');
-    })
-    .catch((err) => {
-      console.log("ERROR:", err);
-    });
+      })
+      .then(() => {
+        // push to dashboard
+        this.props.router.push('/dashboard');
+      })
+      .catch((err) => {
+        console.log("ERROR:", err);
+      });
+    } else {
+      this.props.router.push('/login');
+    }
   }
 
   render() {
     return(
       <div id="results-page">
-        <h1>KITCHEN SINK</h1>
         <Nav />
 
         {/* search input for API query parameters */}
         <div id="search-bar">
-          <h3>Recipe Inspiration!</h3>
-          <input name="query" className="form-input" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Search by Ingredients" />
+          <h3>SEARCH FOR RECIPE INSPIRATION!</h3>
+          <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Search by Ingredients" />
           <br />
           <br />
           <button onClick={this.findRecipes.bind(this)}>Search Recipes!</button>
@@ -152,16 +158,9 @@ class RecipeResult extends Component {
             source={this.state.recipe.source.sourceDisplayName}
             source_url={this.state.recipe.source.sourceRecipeUrl}
             time={this.state.recipe.totalTime}
+            hideModal={this.hideModal.bind(this)}
+            handleSubmit={this.handleSubmit.bind(this)}
           /> : null}
-
-          {this.state.modalVisible?
-            <button onClick={this.hideModal.bind(this)}>Close</button>
-            : null
-          }
-          {this.state.modalVisible?
-            <button onClick={this.handleSubmit.bind(this)}>Save Recipe</button>
-            : null
-          }
 
           {/* END OF MODAL */}
 
@@ -171,11 +170,11 @@ class RecipeResult extends Component {
             return(
               <div key={recipe.id} className="result-item">
                 <div>
-                  <div>
-                    <h3>{recipe.recipeName}</h3>
+                  <div className="result-content">
+                    <h3 className="result-content">{recipe.recipeName}</h3>
                     <img src={recipe.imageUrlsBySize[90]} />
-                    <p>Ingredients: {recipe.ingredients.join(', ')}</p>
-                    <p>Source: {recipe.sourceDisplayName}</p>
+                    <p className="result-content">Ingredients: {recipe.ingredients.join(', ')}</p>
+                    <p className="result-content">Source: {recipe.sourceDisplayName}</p>
 
                     {/* button to modal / GET recipe id fetch call here */}
                     <button onClick={this.findRecipeInfo.bind(this, recipe)}>More Info</button>

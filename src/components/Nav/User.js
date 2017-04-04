@@ -6,6 +6,22 @@ class User extends Component {
     super(props);
   }
 
+  const user_id = window.localStorage.getItem("user_id");
+  console.log("USER ID:", user_id);
+
+  // component did mount - get request to users with id as parameter
+  componentDidMount() {
+    if(window.localStorage.getItem('loggedIn')) {
+      this.setState({ loggedIn: {display:'inline-block'}});
+    } else {
+      this.setState({ loggedIn: {display:'none'}});
+    }
+
+
+  }
+
+  // style={this.state.loggedIn}
+
   render() {
     return (
       <div>

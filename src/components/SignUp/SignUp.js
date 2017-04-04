@@ -69,15 +69,14 @@ class SignUp extends Component {
     return(
       <div id="signup-form">
         <div className="container">
-          <h1>KITCHEN SINK</h1>
           <Nav />
           <div className="form-container">
-            <h3>Create an Account</h3>
+            <h3>CREATE AN ACCOUNT</h3>
             <form onSubmit={this.handleSubmit.bind(this)}>
-              <input className="form-input" name="first_name" type="text" placeholder="First Name" onChange={this.handleChange.bind(this)} /><br/>
-              <input className="form-input" name="last_name" type="text" placeholder="Last Name" onChange={this.handleChange.bind(this)} /><br/>
-              <input className="form-input" name="email" type="email" placeholder="Email Address" onChange={this.handleChange.bind(this)} /><br/>
-              <input className="form-input" name="password_digest" type="password" placeholder="Password" onChange={this.handleChange.bind(this)} /><br/>
+              <input name="first_name" type="text" placeholder="First Name" onChange={this.handleChange.bind(this)} /><br/>
+              <input name="last_name" type="text" placeholder="Last Name" onChange={this.handleChange.bind(this)} /><br/>
+              <input name="email" type="email" placeholder="Email Address" onChange={this.handleChange.bind(this)} /><br/>
+              <input name="password_digest" type="password" placeholder="Password" onChange={this.handleChange.bind(this)} /><br/>
               <br />
               <br />
               <button className="standard-btn" type="submit">Sign Up</button>
