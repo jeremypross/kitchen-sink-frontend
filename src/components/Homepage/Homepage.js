@@ -13,7 +13,7 @@ class Homepage extends Component {
 
   // GET request for recipes data
   componentDidMount() {
-    fetch(`http://localhost:8000/recipes`, {
+    fetch(`https://kitchen-sink-app.heroku.com/recipes`, {
       method: "GET"
     })
     .then((results) => {

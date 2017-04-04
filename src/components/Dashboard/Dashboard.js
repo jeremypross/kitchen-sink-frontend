@@ -25,7 +25,7 @@ class Dashboard extends Component {
 
   // GET request to authorize token for dashboard access and find all users's saved recipes
   componentDidMount() {
-    fetch('http://localhost:8000/users/dashboard', {
+    fetch('https://kitchen-sink-app.heroku.com/users/dashboard', {
       method: "GET",
       headers: {
         "Authorization": window.localStorage.getItem("MyToken")

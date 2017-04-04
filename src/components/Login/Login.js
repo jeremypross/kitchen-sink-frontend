@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { browserHistory } from "react-router";
 import update from "react-addons-update";
 import Nav from "../Nav/Nav";
 
@@ -31,7 +30,7 @@ class Login extends Component {
   // POST request
   handleSubmit(event) {
     event.preventDefault();
-    fetch(`http://localhost:8000/users/login`, {
+    fetch(`https://kitchen-sink-app.heroku.com/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
 
 class User extends Component {
   constructor(props) {
     super(props);
   }
-
-  const user_id = window.localStorage.getItem("user_id");
-  // console.log("USER ID:", user_id);
 
   // component did mount - get request to users with id as parameter
   componentDidMount() {

@@ -17,7 +17,7 @@ class SignUp extends Component {
 
   // GET request for user data
   componentDidMount() {
-    fetch(`http://localhost:8000/users`, {
+    fetch(`https://kitchen-sink-app.heroku.com/users`, {
       method: "GET"
     })
     .then((results) => {
@@ -49,7 +49,7 @@ class SignUp extends Component {
 
     console.log(this.state.user);
 
-    fetch(`http://localhost:8000/users/signup`, {
+    fetch(`https://kitchen-sink-app.heroku.com/users/signup`, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {

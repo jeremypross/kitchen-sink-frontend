@@ -48,7 +48,7 @@ class RecipeResult extends Component {
 
   // first FETCH GET request - to get recipe search results
   findRecipes() {
-    fetch(`http://localhost:8000/api/${this.state.search.query}`, {
+    fetch(`https://kitchen-sink-app.heroku.com/api/${this.state.search.query}`, {
       method: "GET",
       datatype: "json",
       headers: {

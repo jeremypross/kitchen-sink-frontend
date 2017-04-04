@@ -30,7 +30,7 @@ class SavedRecipe extends Component {
     event.preventDefault();
 
     const user_id = window.localStorage.getItem('user_id');
-    fetch(`http://localhost:8000/recipes/${this.props.id}/${user_id}`, {
+    fetch(`https://kitchen-sink-app.heroku.com/recipes/${this.props.id}/${user_id}`, {
       method: "PUT",
       body: JSON.stringify({comment: this.state.comment}),
       headers: {
@@ -51,7 +51,7 @@ class SavedRecipe extends Component {
 
   // DELETE request to delete saved recipe
   handleDelete() {
-    fetch(`http://localhost:8000/recipes/${this.props.id}/${this.props.user_id}`, {
+    fetch(`https://kitchen-sink-app.heroku.com/recipes/${this.props.id}/${this.props.user_id}`, {
       method: "DELETE"
     })
     .then(() => {
