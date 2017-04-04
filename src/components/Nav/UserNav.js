@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { browserHistory } from "react-router";
-import { Link } from "react-router";
+import { Link, browserHistory } from "react-router";
 
 class UserNav extends Component {
   constructor(props) {
@@ -10,7 +9,7 @@ class UserNav extends Component {
   handleSubmit() {
     window.localStorage.removeItem("MyToken");
     window.localStorage.removeItem("user_id");
-    window.localStorage.removeItem("loggedin")
+    window.localStorage.removeItem("loggedin");
     browserHistory.push('/');
   }
 

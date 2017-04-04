@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { browserHistory } from "react-router";
+import { Link, browserHistory } from "react-router";
 import update from "react-addons-update";
-import { Link } from "react-router";
 
 class SavedRecipe extends Component {
   constructor() {
@@ -12,7 +11,7 @@ class SavedRecipe extends Component {
       isVisible: {
         display: "block"
       }
-    }
+    };
   }
 
   handleChange(event) {
@@ -47,7 +46,7 @@ class SavedRecipe extends Component {
     })
     .catch((err) => {
       console.log("ERROR", err);
-    })
+    });
   }
 
   // DELETE request to delete saved recipe

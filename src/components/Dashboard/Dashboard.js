@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { browserHistory } from "react-router";
-import update from "react-addons-update";
 
 import UserNav from "../Nav/UserNav";
 import SavedRecipe from "../Dashboard/SavedRecipe";
@@ -45,7 +44,7 @@ class Dashboard extends Component {
     .catch((err) => {
       console.log("ERROR:", err);
       browserHistory.push('/login');
-    })
+    });
   }
 
   render() {
@@ -54,7 +53,7 @@ class Dashboard extends Component {
         {/* {this.state.recipes[0].first_name} {this.state.recipes[0].last_name} */}
 
         <UserNav />
-        <h3>DASHBOARD</h3>
+        <h3>USER DASHBOARD</h3>
         {this.state.recipes.map((recipe) => {
           return(
             <div key={recipe.id}>
@@ -69,12 +68,11 @@ class Dashboard extends Component {
                 comment={recipe.comment}
                 user_id={recipe.user_id}
               />
-
             </div>
-          )
+          );
         })}
       </div>
-    )
+    );
   }
 }
 

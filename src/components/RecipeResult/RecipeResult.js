@@ -19,24 +19,19 @@ class RecipeResult extends Component {
 
   }
 
-  // call backs to toggle modal visiblity
-  showModal() {
-    this.setState({ modalVisible: true });
-    console.log("showModal() this", this);
-  }
-
-  hideModal() {
-    this.setState({ modalVisible: false });
-    console.log("hideModal() this", this);
-  }
-
   // when modal is fired - automatically scrolls towards top of page to view
   componentDidUpdate() {
     window.scrollTo(0, 300);
   }
 
-  // callback to set state of modal as visible - that passes down to modal as a prop
-  // pass it down like: showModal={this.showModal.bind(this)}
+  // call backs to toggle modal visiblity
+  showModal() {
+    this.setState({ modalVisible: true });
+  }
+
+  hideModal() {
+    this.setState({ modalVisible: false });
+  }
 
   handleChange(event) {
     let newState = update(this.state, {
@@ -66,7 +61,7 @@ class RecipeResult extends Component {
         this.setState({ recipes: data.matches });
         console.log("data from RecipeResult promise", data);
         console.log("this.state.recipes:", this.state.recipes);
-        this.setState({ search: { query: ""}})
+        this.setState({ search: { query: ""}});
       });
     })
     .catch((err) => {
@@ -88,9 +83,8 @@ class RecipeResult extends Component {
     .then((results) => {
       results.json().then((data) => {
         this.setState({ recipe: data });
-        console.log("this.state.recipe", this.state.recipe);
-        // this.setState({ modalVisible: true });
-        this.showModal()
+        // console.log("this.state.recipe", this.state.recipe);
+        this.showModal();
       });
     });
   }
@@ -138,6 +132,7 @@ class RecipeResult extends Component {
         <Nav />
 
         {/* search input for API query parameters */}
+
         <div id="search-bar">
           <h3>SEARCH FOR RECIPE INSPIRATION!</h3>
           <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Search by Ingredients" />
@@ -146,7 +141,7 @@ class RecipeResult extends Component {
           <button onClick={this.findRecipes.bind(this)}>Search Recipes!</button>
         </div>
 
-        {/* MODAL */}
+        {/* MODAL - displays data from second fetch call */}
 
         {this.state.modalVisible ?
           <Modal
@@ -162,8 +157,6 @@ class RecipeResult extends Component {
             handleSubmit={this.handleSubmit.bind(this)}
           /> : null}
 
-          {/* END OF MODAL */}
-
         {/* iterate over recipes array and render search results */}
         <div className="result-container">
           {this.state.recipes.map((recipe) => {
@@ -176,22 +169,17 @@ class RecipeResult extends Component {
                     <p className="result-content">Ingredients: {recipe.ingredients.join(', ')}</p>
                     <p className="result-content">Source: {recipe.sourceDisplayName}</p>
 
-                    {/* button to modal / GET recipe id fetch call here */}
+                    {/* button to modal / GET recipe id fetch call */}
                     <button onClick={this.findRecipeInfo.bind(this, recipe)}>More Info</button>
-                    {/* <button onClick={this.hideModal.bind(this)}>Close Modal</button> */}
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-
-
-
       </div>
     );
   }
-
 }
 
 export default RecipeResult;
