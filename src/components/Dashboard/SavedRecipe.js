@@ -38,8 +38,8 @@ class SavedRecipe extends Component {
       }
     })
     .then(() => {
-        console.log("COMMENT ADDED");
-        console.log("Comment:", this.state.comment);
+        // console.log("COMMENT ADDED");
+        // console.log("Comment:", this.state.comment);
         this.setState({ comment: this.state.comment });
         browserHistory.push("/dashboard");
         window.location.reload();

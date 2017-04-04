@@ -33,12 +33,12 @@ class Dashboard extends Component {
     })
     .then((results) => {
       results.json().then((data) => {
-        console.log("DATA:", data);
-        console.log("USER ID:", data.user_id);
+        // console.log("DATA:", data);
+        // console.log("USER ID:", data.user_id);
         this.setState({ recipes: data.data });
         this.setState({ user_id: data.user_id });
         window.localStorage.setItem('user_id', this.state.user_id);
-        console.log("THIS.STATE.RECIPES", this.state.recipes);
+        // console.log("THIS.STATE.RECIPES", this.state.recipes);
       });
     })
     .catch((err) => {

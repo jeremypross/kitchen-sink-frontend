@@ -19,7 +19,7 @@ class Homepage extends Component {
     .then((results) => {
       results.json().then((data) => {
         this.setState({ recipes: data });
-        console.log("homepage componentDidMount data:", data);
+        // console.log("homepage componentDidMount data:", data);
       });
     })
     .catch((err) => {

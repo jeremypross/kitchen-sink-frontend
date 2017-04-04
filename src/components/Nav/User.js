@@ -7,7 +7,7 @@ class User extends Component {
   }
 
   const user_id = window.localStorage.getItem("user_id");
-  console.log("USER ID:", user_id);
+  // console.log("USER ID:", user_id);
 
   // component did mount - get request to users with id as parameter
   componentDidMount() {
