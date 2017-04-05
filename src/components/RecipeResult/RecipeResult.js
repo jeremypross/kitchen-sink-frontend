@@ -48,7 +48,7 @@ class RecipeResult extends Component {
 
   // first FETCH GET request - to get recipe search results
   findRecipes() {
-    fetch(`https://kitchen-sink-app.heroku.com/api/${this.state.search.query}`, {
+    fetch(`https://kitchen-sink-server.herokuapp.com/api/${this.state.search.query}`, {
       method: "GET",
       datatype: "json",
       headers: {
@@ -73,7 +73,7 @@ class RecipeResult extends Component {
   findRecipeInfo(recipe) {
     console.log(recipe.id);
 
-    fetch(`http://localhost:8000/api/info/${recipe.id}`, {
+    fetch(`https://kitchen-sink-server.herokuapp.com/api/info/${recipe.id}`, {
       method: "GET",
       datatype: "json",
       headers: {
@@ -96,7 +96,7 @@ class RecipeResult extends Component {
     // check if user is logged in they can save recipes
     // if not user is pushed to login page
     if(window.localStorage.getItem('loggedin')) {
-      fetch(`http://localhost:8000/recipes`, {
+      fetch(`https://kitchen-sink-server.herokuapp.com/recipes`, {
         method: "POST",
         body: JSON.stringify({
           recipe: {

@@ -25,7 +25,7 @@ class Dashboard extends Component {
 
   // GET request to authorize token for dashboard access and find all users's saved recipes
   componentDidMount() {
-    fetch('https://kitchen-sink-app.heroku.com/users/dashboard', {
+    fetch('https://kitchen-sink-server.herokuapp.com/users/dashboard', {
       method: "GET",
       headers: {
         "Authorization": window.localStorage.getItem("MyToken")
@@ -53,7 +53,7 @@ class Dashboard extends Component {
         {/* {this.state.recipes[0].first_name} {this.state.recipes[0].last_name} */}
 
         <UserNav />
-        <h3>USER DASHBOARD</h3>
+        <h3>SAVED RECIPES</h3>
         {this.state.recipes.map((recipe) => {
           return(
             <div key={recipe.id}>

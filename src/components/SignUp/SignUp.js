@@ -17,13 +17,13 @@ class SignUp extends Component {
 
   // GET request for user data
   componentDidMount() {
-    fetch(`https://kitchen-sink-app.heroku.com/users`, {
+    fetch(`https://kitchen-sink-server.herokuapp.com/users`, {
       method: "GET"
     })
     .then((results) => {
       results.json().then((data) => {
         this.setState({ user:data });
-        console.log("signup.js componentDidMount data:", data);
+        // console.log("signup.js componentDidMount data:", data);
       });
     })
     .catch((err) => {
@@ -49,7 +49,7 @@ class SignUp extends Component {
 
     console.log(this.state.user);
 
-    fetch(`https://kitchen-sink-app.heroku.com/users/signup`, {
+    fetch(`https://kitchen-sink-server.herokuapp.com/users/signup`, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {

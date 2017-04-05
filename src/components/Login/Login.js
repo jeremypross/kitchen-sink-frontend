@@ -30,7 +30,7 @@ class Login extends Component {
   // POST request
   handleSubmit(event) {
     event.preventDefault();
-    fetch(`https://kitchen-sink-app.heroku.com/users/login`, {
+    fetch(`https://kitchen-sink-server.herokuapp.com/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
