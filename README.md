@@ -3,6 +3,8 @@
 ## Approach:
 My approach to this app was to provide a solution the cooking and meal planning.  The inspiration came from when you have limited ingredients and need inspiration for what to cook.  Kitchen Sink allows users to input ingredients they'd like to cook with and return search results of recipes which include those ingredients.
 
+[Link to Deployed App](https://kitchensink-app.herokuapp.com/)
+
 ## User Stories
 * Users should be able to login and logout of the app.
 * Users should be able to search for recipes based on the ingredients they have available.
