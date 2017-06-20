@@ -31,6 +31,9 @@ class Homepage extends Component {
     return (
       <div id="homepage">
         <Nav />
+        <p className="descriptions">A food inspiration and meal planning app where you can <br />
+         search for recipes based on the ingredients you have on hand!</p>
+
         <h3>RECENTLY SAVED RECIPES:</h3>
         <div className="result-container">
           {this.state.recipes.map((recipe) => {

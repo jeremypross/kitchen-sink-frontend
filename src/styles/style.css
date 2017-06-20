@@ -30,6 +30,11 @@ input {
 
 /* RECIPE RESULT */
 
+.descriptions {
+  line-height: 2;
+  color: #F8F8FF;
+}
+
 .result-container {
   display: flex;
   justify-content: center;

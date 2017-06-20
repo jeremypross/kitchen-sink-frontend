@@ -134,6 +134,7 @@ class RecipeResult extends Component {
         {/* search input for API query parameters */}
 
         <div id="search-bar">
+          <p className="descriptions">Enter ingredients you have at home or would like to cook with! <br /> Kitchen Sink will return a list of recipes using those ingredients! <br /> Save recipes to your user dashboard for future meals!</p>
           <h3>SEARCH FOR RECIPE INSPIRATION!</h3>
           <input name="query" onChange={this.handleChange.bind(this)} value={this.state.search.query} placeholder="Search by Ingredients" />
           <br />
